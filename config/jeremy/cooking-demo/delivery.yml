@@ -48,6 +48,10 @@ spec:
       - env:
         - name: SPRING_CONFIG_IMPORT
           value: optional:configtree:${SERVICE_BINDING_ROOT}/spring-properties/
+        - name: SPRING_CLOUD_CONFIG_ENABLED
+          value: "false"
+        - name: SPRING_PROFILES_ACTIVE
+          value: development
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.health.probes.enabled="true" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
         image: registry.harbor.learn.tapsme.org/tap-build/workloads/cooking-demo-jeremy@sha256:74a67ce073ef107c7fc520e4d091f87b5c929f69fc919fe9cfd42104e2238dfd
