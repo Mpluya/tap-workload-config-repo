@@ -36,7 +36,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: registry.harbor.learn.tapsme.org/tap-build/workloads/appsso-starter-java-jeremy@sha256:51e1bf1a6ce6459db6c7bcd8c8e8f9c6cb6a9e693f362900ab7473eeb2bd91f3
+        image: registry.harbor.learn.tapsme.org/tap-build/workloads/appsso-starter-java-jeremy@sha256:baf01032a77872b292c6657dbd3ef1a338a5720c30d9865232cf142ec4e806f7
         name: workload
         ports:
         - containerPort: 8080
