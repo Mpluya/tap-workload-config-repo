@@ -8,7 +8,9 @@ metadata:
     kapp.k14s.io/change-rule: upsert after upserting servicebinding.io/ServiceBindings
   labels:
     app.kubernetes.io/part-of: unicorn-app
+    apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/workload-type: web
+    apps.tanzu.vwmare.com/language: java
     app.kubernetes.io/component: run
     carto.run/workload-name: maven-workload
 spec:
@@ -31,7 +33,9 @@ spec:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: unicorn-app
         apps.tanzu.vmware.com/auto-configure-actuators: "false"
+        apps.tanzu.vmware.com/has-tests: "true"
         apps.tanzu.vmware.com/workload-type: web
+        apps.tanzu.vwmare.com/language: java
         carto.run/workload-name: maven-workload
         conventions.carto.run/framework: spring-boot
         tanzu.app.live.view: "true"
@@ -44,7 +48,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: registry.harbor.learn.tapsme.org/tap-build/workloads/maven-workload-jeremy@sha256:2fa8542aafce2722c444907567bf0d0afc007a1f8b021ac381c137094305f08f
+        image: registry.harbor.learn.tapsme.org/tap-build/workloads/maven-workload-jeremy@sha256:ad03ad896aa3584df031a1048ccd88694621c881296ec196dba4221fd56a43cd
         name: workload
         ports:
         - containerPort: 8080
