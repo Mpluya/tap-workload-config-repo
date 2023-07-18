@@ -52,7 +52,7 @@ spec:
           value: stg
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.health.probes.enabled="true" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: registry.harbor.learn.tapsme.org/tap-build/workloads/cook-app-one-jeremy@sha256:3a55b2ff16001113e4eb331a2de2dfd53cb2bf584eb069d8121b01d080c3c7e1
+        image: registry.harbor.learn.tapsme.org/tap-build/workloads/cook-app-one-jeremy@sha256:d5324f43500688be4ca314614c0873743f2e0d60e707aacf6198ee196e8af243
         livenessProbe:
           httpGet:
             path: /livez
