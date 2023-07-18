@@ -31,7 +31,7 @@ spec:
   service:
     apiVersion: services.apps.tanzu.vmware.com/v1alpha1
     kind: ResourceClaim
-    name: cook-config-claim
+    name: cook-app-one-config-claim
   workload:
     apiVersion: serving.knative.dev/v1
     kind: Service
