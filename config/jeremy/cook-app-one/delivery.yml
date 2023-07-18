@@ -46,9 +46,13 @@ spec:
       - env:
         - name: SPRING_CONFIG_IMPORT
           value: optional:configtree:${SERVICE_BINDING_ROOT}/spring-properties/
+        - name: SPRING_CLOUD_CONFIG_ENABLED
+          value: "false"
+        - name: SPRING_PROFILES_ACTIVE
+          value: stg
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.health.probes.enabled="true" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: registry.harbor.learn.tapsme.org/tap-build/workloads/cook-app-one-jeremy@sha256:53fc33c8612bbf8f1a60b266882e722279fdff8975697c0149ad6f713d88fc89
+        image: registry.harbor.learn.tapsme.org/tap-build/workloads/cook-app-one-jeremy@sha256:6bfb0ef62dca7b05c4149cdb033ad61899a3a2f3fc5e096144d6bc911bcd7d66
         livenessProbe:
           httpGet:
             path: /livez
