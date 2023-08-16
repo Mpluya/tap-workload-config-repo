@@ -71,4 +71,8 @@ spec:
         securityContext:
           runAsUser: 1000
       serviceAccountName: default
+      tolerations:
+      - effect: NoSchedule
+        key: test
+        operator: Exists
 
