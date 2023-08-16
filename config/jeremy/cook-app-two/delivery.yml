@@ -42,6 +42,16 @@ spec:
         tanzu.app.live.view.application.flavours: spring-boot
         tanzu.app.live.view.application.name: cook-app-two
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: topology.kubernetes.io/zone
+                operator: In
+                values:
+                - 0.0.103
+                - 0.0.104
       containers:
       - env:
         - name: SPRING_CONFIG_IMPORT
