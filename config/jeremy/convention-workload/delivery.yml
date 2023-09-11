@@ -1,0 +1,59 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: convention-workload
+  annotations:
+    ootb.apps.tanzu.vmware.com/servicebinding-workload: "true"
+    ootb.apps.tanzu.vmware.com/apidescriptor-ref: "true"
+    kapp.k14s.io/change-rule: upsert after upserting servicebinding.io/ServiceBindings
+  labels:
+    app.kubernetes.io/part-of: app-golang-kpack
+    apps.tanzu.vmware.com/workload-type: web
+    app.kubernetes.io/component: run
+    carto.run/workload-name: convention-workload
+spec:
+  template:
+    metadata:
+      annotations:
+        conventions.carto.run/applied-conventions: |-
+          appliveview-sample/app-live-view-appflavour-check
+          simple-convention/x95castle1.org-readiness
+          simple-convention/x95castle1.org-liveness
+          simple-convention/x95castle1.org-carto-run-workload-name
+          spring-boot-convention/auto-configure-actuators-check
+          spring-boot-convention/app-live-view-appflavour-check
+        developer.conventions/target-containers: workload
+        kubectl.kubernetes.io/last-applied-configuration: |
+          {"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{},"labels":{"app.kubernetes.io/part-of":"app-golang-kpack","apps.tanzu.vmware.com/workload-type":"web"},"name":"convention-workload","namespace":"jeremy"},"spec":{"params":[{"name":"annotations","value":{"x95castle1.org/livenessProbe":"{\"exec\":{\"command\":[\"cat\",\"/tmp/healthy\"]},\"initialDelaySeconds\":5,\"periodSeconds\":5}","x95castle1.org/readinessProbe":"{\"httpGet\":{\"path\":\"/healthz\",\"port\":8080},\"initialDelaySeconds\":5,\"periodSeconds\":5}"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/carto-run/app-golang-kpack"}}}}
+        x95castle1.org/livenessProbe: '{"exec":{"command":["cat","/tmp/healthy"]},"initialDelaySeconds":5,"periodSeconds":5}'
+        x95castle1.org/readinessProbe: '{"httpGet":{"path":"/healthz","port":8080},"initialDelaySeconds":5,"periodSeconds":5}'
+      labels:
+        app.kubernetes.io/component: run
+        app.kubernetes.io/part-of: app-golang-kpack
+        apps.tanzu.vmware.com/workload-type: web
+        carto.run/workload-name: convention-workload
+    spec:
+      containers:
+      - env:
+        - name: CARTO_RUN_WORKLOAD_NAME
+          value: convention-workload
+        image: registry.harbor.learn.tapsme.org/tap-build/workloads/convention-workload-jeremy@sha256:0911b9dffaa238a940a65e695f5890342eb135576216e324a66226ea53069ec0
+        livenessProbe:
+          exec:
+            command:
+            - cat
+            - /tmp/healthy
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        name: workload
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        resources: {}
+        securityContext:
+          runAsUser: 1000
+      serviceAccountName: default
+
