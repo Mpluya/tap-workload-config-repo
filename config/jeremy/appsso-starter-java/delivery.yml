@@ -19,6 +19,7 @@ spec:
         boot.spring.io/version: 3.0.4
         conventions.carto.run/applied-conventions: |-
           appliveview-sample/app-live-view-appflavour-check
+          simple-convention/x95castle1.org-carto-run-workload-name
           spring-boot-convention/auto-configure-actuators-check
           spring-boot-convention/spring-boot
           spring-boot-convention/spring-boot-graceful-shutdown
@@ -34,6 +35,8 @@ spec:
     spec:
       containers:
       - env:
+        - name: CARTO_RUN_WORKLOAD_NAME
+          value: appsso-starter-java
         - name: JAVA_TOOL_OPTIONS
           value: -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
         image: registry.harbor.learn.tapsme.org/tap-build/workloads/appsso-starter-java-jeremy@sha256:9cdf6b5ef6bae4270651ed8f6b5da0436586d8054fe529f25a23170dc05d7050
