@@ -19,6 +19,7 @@ spec:
         boot.spring.io/version: 3.0.1
         conventions.carto.run/applied-conventions: |-
           appliveview-sample/app-live-view-appflavour-check
+          simple-convention/x95castle1.org-carto-run-workload-name
           spring-boot-convention/auto-configure-actuators-check
           spring-boot-convention/spring-boot
           spring-boot-convention/spring-boot-graceful-shutdown
@@ -50,6 +51,8 @@ spec:
           value: "false"
         - name: SPRING_PROFILES_ACTIVE
           value: stg
+        - name: CARTO_RUN_WORKLOAD_NAME
+          value: cook-app-one
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.health.probes.enabled="true" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
         image: registry.harbor.learn.tapsme.org/tap-build/workloads/cook-app-one-jeremy@sha256:cdac606798799731417752c9062cce5d36b05535c67d2e43724245575a4f14f1
