@@ -23,11 +23,11 @@ spec:
           spring-boot-convention/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
         kubectl.kubernetes.io/last-applied-configuration: |
-          {"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{},"labels":{"app.kubernetes.io/part-of":"app-golang-kpack","apps.tanzu.vmware.com/workload-type":"web"},"name":"convention-workload-with-volumes","namespace":"jeremy"},"spec":{"params":[{"name":"annotations","value":{"x95castle1.org/storage":"{\"volumes\":[{\"name\":\"config-vol\",\"configMap\":{\"name\":\"log-config\",\"items\":[{\"key\":\"log_level\",\"path\":\"log_level\"}]}}],\"volumeMounts\":[{\"name\":\"config-vol\",\"mountPath\":\"/etc/config\"}]}"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/carto-run/app-golang-kpack"}}}}
+          {"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{},"labels":{"app.kubernetes.io/part-of":"convention-workload-with-volumes","apps.tanzu.vmware.com/workload-type":"web"},"name":"convention-workload-with-volumes","namespace":"jeremy"},"spec":{"params":[{"name":"annotations","value":{"x95castle1.org/storage":"{\"volumes\":[{\"name\":\"config-vol\",\"configMap\":{\"name\":\"log-config\",\"items\":[{\"key\":\"log_level\",\"path\":\"log_level\"}]}}],\"volumeMounts\":[{\"name\":\"config-vol\",\"mountPath\":\"/etc/config\"}]}"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/carto-run/app-golang-kpack"}}}}
         x95castle1.org/storage: '{"volumes":[{"name":"config-vol","configMap":{"name":"log-config","items":[{"key":"log_level","path":"log_level"}]}}],"volumeMounts":[{"name":"config-vol","mountPath":"/etc/config"}]}'
       labels:
         app.kubernetes.io/component: run
-        app.kubernetes.io/part-of: app-golang-kpack
+        app.kubernetes.io/part-of: convention-workload-with-volumes
         apps.tanzu.vmware.com/workload-type: web
         carto.run/workload-name: convention-workload-with-volumes
     spec:
