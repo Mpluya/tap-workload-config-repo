@@ -18,12 +18,13 @@ spec:
         conventions.carto.run/applied-conventions: |-
           appliveview-sample/app-live-view-appflavour-check
           multi-purpose-convention/x95castle1.org-carto-run-workload-name
+          multi-purpose-convention/x95castle1.org-tolerations
           spring-boot-convention/auto-configure-actuators-check
           spring-boot-convention/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
         kubectl.kubernetes.io/last-applied-configuration: |
-          {"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{},"labels":{"app.kubernetes.io/part-of":"convention-workload-tolerations","apps.tanzu.vmware.com/workload-type":"web"},"name":"convention-workload-tolerations","namespace":"jeremy"},"spec":{"params":[{"name":"annotations","value":{"x95castle1.org/tolerations":"{\"tolerations\":[{\"key\":\"rabeyta\",\"operator\":\"Exists\",\"effect\":\"NoSchedule\"}]}"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/carto-run/app-golang-kpack"}}}}
-        x95castle1.org/tolerations: '{"tolerations":[{"key":"rabeyta","operator":"Exists","effect":"NoSchedule"}]}'
+          {"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{},"labels":{"app.kubernetes.io/part-of":"convention-workload-tolerations","apps.tanzu.vmware.com/workload-type":"web"},"name":"convention-workload-tolerations","namespace":"jeremy"},"spec":{"params":[{"name":"annotations","value":{"x95castle1.org/tolerations":"[{\"key\":\"rabeyta\",\"operator\":\"Exists\",\"effect\":\"NoSchedule\"}]"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/carto-run/app-golang-kpack"}}}}
+        x95castle1.org/tolerations: '[{"key":"rabeyta","operator":"Exists","effect":"NoSchedule"}]'
       labels:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: convention-workload-tolerations
@@ -40,4 +41,8 @@ spec:
         securityContext:
           runAsUser: 1000
       serviceAccountName: default
+      tolerations:
+      - effect: NoSchedule
+        key: rabeyta
+        operator: Exists
 
