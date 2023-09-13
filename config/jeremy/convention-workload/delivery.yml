@@ -17,9 +17,9 @@ spec:
       annotations:
         conventions.carto.run/applied-conventions: |-
           appliveview-sample/app-live-view-appflavour-check
-          simple-convention/x95castle1.org-readiness
-          simple-convention/x95castle1.org-liveness
-          simple-convention/x95castle1.org-carto-run-workload-name
+          multi-purpose-convention/x95castle1.org-readiness
+          multi-purpose-convention/x95castle1.org-liveness
+          multi-purpose-convention/x95castle1.org-carto-run-workload-name
           spring-boot-convention/auto-configure-actuators-check
           spring-boot-convention/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
