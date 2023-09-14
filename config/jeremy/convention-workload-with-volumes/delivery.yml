@@ -17,8 +17,7 @@ spec:
       annotations:
         conventions.carto.run/applied-conventions: |-
           appliveview-sample/app-live-view-appflavour-check
-          multi-purpose-convention/x95castle1.org-carto-run-workload-name
-          multi-purpose-convention/x95castle1.org-storage
+          multi-purpose-convention/example.com-carto-run-workload-name
           spring-boot-convention/auto-configure-actuators-check
           spring-boot-convention/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
@@ -40,15 +39,5 @@ spec:
         resources: {}
         securityContext:
           runAsUser: 1000
-        volumeMounts:
-        - mountPath: /etc/config
-          name: config-vol
       serviceAccountName: default
-      volumes:
-      - configMap:
-          items:
-          - key: log_level
-            path: log_level
-          name: log-config
-        name: config-vol
 
