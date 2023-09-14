@@ -35,7 +35,7 @@ spec:
       - env:
         - name: CARTO_RUN_WORKLOAD_NAME
           value: convention-workload-tolerations
-        image: registry.harbor.learn.tapsme.org/tap-build/workloads/convention-workload-tolerations-jeremy@sha256:0911b9dffaa238a940a65e695f5890342eb135576216e324a66226ea53069ec0
+        image: registry.harbor.learn.tapsme.org/tap-build/workloads/convention-workload-tolerations-jeremy@sha256:b8ed71c0ecad262118023bb0e000c830752a92111cdecf6f796db3668ceb3ad0
         name: workload
         resources: {}
         securityContext:
