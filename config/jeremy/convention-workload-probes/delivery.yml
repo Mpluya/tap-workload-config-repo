@@ -17,7 +17,9 @@ spec:
       annotations:
         conventions.carto.run/applied-conventions: |-
           appliveview-sample/app-live-view-appflavour-check
-          multi-purpose-convention/example.com-carto-run-workload-name
+          multi-purpose-convention/x95castle1.org-readiness
+          multi-purpose-convention/x95castle1.org-liveness
+          multi-purpose-convention/x95castle1.org-carto-run-workload-name
           spring-boot-convention/auto-configure-actuators-check
           spring-boot-convention/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
@@ -36,7 +38,20 @@ spec:
         - name: CARTO_RUN_WORKLOAD_NAME
           value: convention-workload-probes
         image: registry.harbor.learn.tapsme.org/tap-build/workloads/convention-workload-probes-jeremy@sha256:b8ed71c0ecad262118023bb0e000c830752a92111cdecf6f796db3668ceb3ad0
+        livenessProbe:
+          exec:
+            command:
+            - cat
+            - /tmp/healthy
+          initialDelaySeconds: 5
+          periodSeconds: 5
         name: workload
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
         resources: {}
         securityContext:
           runAsUser: 1000
