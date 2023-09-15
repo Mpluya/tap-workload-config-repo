@@ -15,15 +15,15 @@ spec:
   template:
     metadata:
       annotations:
+        autoscaling.knative.dev/minScale: "1"
         conventions.carto.run/applied-conventions: |-
           appliveview-sample/app-live-view-appflavour-check
-          multi-purpose-convention/x95castle1.org-carto-run-workload-name
           multi-purpose-convention/x95castle1.org-tolerations
           spring-boot-convention/auto-configure-actuators-check
           spring-boot-convention/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
         kubectl.kubernetes.io/last-applied-configuration: |
-          {"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{},"labels":{"app.kubernetes.io/part-of":"convention-workload-tolerations","apps.tanzu.vmware.com/workload-type":"web"},"name":"convention-workload-tolerations","namespace":"jeremy"},"spec":{"params":[{"name":"annotations","value":{"x95castle1.org/tolerations":"[{\"key\":\"rabeyta\",\"operator\":\"Exists\",\"effect\":\"NoSchedule\"}]"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/carto-run/app-golang-kpack"}}}}
+          {"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{},"labels":{"app.kubernetes.io/part-of":"convention-workload-tolerations","apps.tanzu.vmware.com/workload-type":"web"},"name":"convention-workload-tolerations","namespace":"jeremy"},"spec":{"params":[{"name":"annotations","value":{"autoscaling.knative.dev/minScale":"1","x95castle1.org/tolerations":"[{\"key\":\"rabeyta\",\"operator\":\"Exists\",\"effect\":\"NoSchedule\"}]"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/carto-run/app-golang-kpack"}}}}
         x95castle1.org/tolerations: '[{"key":"rabeyta","operator":"Exists","effect":"NoSchedule"}]'
       labels:
         app.kubernetes.io/component: run
@@ -32,10 +32,7 @@ spec:
         carto.run/workload-name: convention-workload-tolerations
     spec:
       containers:
-      - env:
-        - name: CARTO_RUN_WORKLOAD_NAME
-          value: convention-workload-tolerations
-        image: registry.harbor.learn.tapsme.org/tap-build/workloads/convention-workload-tolerations-jeremy@sha256:b8ed71c0ecad262118023bb0e000c830752a92111cdecf6f796db3668ceb3ad0
+      - image: registry.harbor.learn.tapsme.org/tap-build/workloads/convention-workload-tolerations-jeremy@sha256:b8ed71c0ecad262118023bb0e000c830752a92111cdecf6f796db3668ceb3ad0
         name: workload
         resources: {}
         securityContext:
