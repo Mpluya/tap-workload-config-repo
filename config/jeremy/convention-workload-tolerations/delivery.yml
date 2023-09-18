@@ -32,7 +32,7 @@ spec:
         carto.run/workload-name: convention-workload-tolerations
     spec:
       containers:
-      - image: registry.harbor.learn.tapsme.org/tap-build/workloads/convention-workload-tolerations-jeremy@sha256:b8ed71c0ecad262118023bb0e000c830752a92111cdecf6f796db3668ceb3ad0
+      - image: registry.harbor.learn.tapsme.org/tap-build/workloads/convention-workload-tolerations-jeremy@sha256:28474c1b0b92620539a96f91944dc5271a285c606646e733fd84ca31447c9123
         name: workload
         resources: {}
         securityContext:
