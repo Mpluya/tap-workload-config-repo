@@ -19,7 +19,6 @@ spec:
         boot.spring.io/version: 3.0.1
         conventions.carto.run/applied-conventions: |-
           appliveview-sample/app-live-view-appflavour-check
-          multi-purpose-convention/x95castle1.org-carto-run-workload-name
           spring-boot-convention/auto-configure-actuators-check
           spring-boot-convention/spring-boot
           spring-boot-convention/spring-boot-graceful-shutdown
@@ -61,11 +60,9 @@ spec:
           value: "false"
         - name: SPRING_PROFILES_ACTIVE
           value: prod
-        - name: CARTO_RUN_WORKLOAD_NAME
-          value: cook-app-two
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.health.probes.enabled="true" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: registry.harbor.learn.tapsme.org/tap-build/workloads/cook-app-two-jeremy@sha256:7881093562ec0c91420cade3c497ffd4a8b63397986a5c6ac7645bfdf09c8a28
+        image: registry.harbor.learn.tapsme.org/tap-build/workloads/cook-app-two-jeremy@sha256:f0ab22251689e022d393ead2a31b1681fa30dc8c49107de169381012c70e13fb
         livenessProbe:
           httpGet:
             path: /livez
