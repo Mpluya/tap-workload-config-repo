@@ -50,7 +50,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: registry.harbor.learn.tapsme.org/tap-build/workloads/maven-workload-grype-jeremy@sha256:ad03ad896aa3584df031a1048ccd88694621c881296ec196dba4221fd56a43cd
+        image: registry.harbor.learn.tapsme.org/tap-build/workloads/maven-workload-grype-jeremy@sha256:73efcebe5438007980e083529693e3e35ebcde788559e8a6306a095ae22a4a86
         name: workload
         ports:
         - containerPort: 8080
