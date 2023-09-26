@@ -19,8 +19,8 @@ spec:
         autoscaling.knative.dev/minScale: "1"
         conventions.carto.run/applied-conventions: |-
           appliveview-sample/app-live-view-appflavour-check
-          multi-purpose-convention/x95castle1.org-readiness
-          multi-purpose-convention/x95castle1.org-liveness
+          jeremy-server/x95castle1.org-readiness
+          jeremy-server/x95castle1.org-liveness
           spring-boot-convention/auto-configure-actuators-check
           spring-boot-convention/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
