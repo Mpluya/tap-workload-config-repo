@@ -26,4 +26,4 @@ stringData:
    ---
    workload_name: greeter-source-package
    replicas: 2
-   hostname: greeter-source-package.run-prod.prep.tapsme.org
+   hostname: greeter-source-package.run.prep.tapsme.org
