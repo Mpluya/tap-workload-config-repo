@@ -7,7 +7,7 @@ metadata:
   annotations:
     packaging.carvel.dev/downgradable: ""
 spec:
- serviceAccountName: default # ServiceAccount on run cluster with permissions to deploy Package, see "Set up run Cluster Namespaces"
+ serviceAccountName: app-deployer # ServiceAccount on run cluster with permissions to deploy Package, see "Set up run Cluster Namespaces"
  packageRef:
    refName: greeter-source-package.dev2.cssa.vmware.com # name of the Package
    versionSelection:
