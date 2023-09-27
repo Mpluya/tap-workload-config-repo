@@ -11,7 +11,7 @@ spec:
  packageRef:
    refName: greeter-source-package.dev2.cssa.vmware.com # name of the Package
    versionSelection:
-     constraints: "20230927144853.0.0+build.ba8094b" # version of the Package
+     constraints: ">20230927144853.0.0+build.ba8094b" # version of the Package
  values:
  - secretRef:
      name: greeter-source-values
