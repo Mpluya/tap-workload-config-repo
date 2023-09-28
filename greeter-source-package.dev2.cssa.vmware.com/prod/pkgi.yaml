@@ -25,5 +25,5 @@ stringData:
  values.yaml: |
    ---
    workload_name: greeter-source-package
-   replicas: 2
+   replicas: 3
    hostname: greeter-source-package.run-prod.prep.tapsme.org
