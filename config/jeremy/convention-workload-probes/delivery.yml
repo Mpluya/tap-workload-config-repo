@@ -35,7 +35,7 @@ spec:
         carto.run/workload-name: convention-workload-probes
     spec:
       containers:
-      - image: registry.harbor.learn.tapsme.org/tap-build/workloads/convention-workload-probes-jeremy@sha256:d39734e34d2c5b21f4dc6c2b8d8d89f032ce2c5fb1d10a78ecdda1e66fdc6c81
+      - image: registry.harbor.learn.tapsme.org/tap-build/workloads/convention-workload-probes-jeremy@sha256:01c0d65ac67a052f15f2a2094c91d286b961cd9d618ded9eced32da5145c5aff
         name: workload
         readinessProbe:
           httpGet:
