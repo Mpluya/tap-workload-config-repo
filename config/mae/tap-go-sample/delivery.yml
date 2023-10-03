@@ -28,7 +28,7 @@ spec:
         carto.run/workload-name: tap-go-sample
     spec:
       containers:
-      - image: registry.harbor.learn.tapsme.org/tap-build/workloads/tap-go-sample-mae@sha256:690d790446a57abf12b4deb1984e670ed492ae41c2af7fdd16267079687a4998
+      - image: registry.harbor.learn.tapsme.org/tap-build/workloads/tap-go-sample-mae@sha256:b3161fec1cb798cac6efa011d4e6ef2b00aad5d779007f8cf20aea828cd04970
         name: workload
         resources: {}
         securityContext:
