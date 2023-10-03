@@ -60,7 +60,7 @@ spec:
               name: special-secret
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details="always" -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include="*" -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: registry.harbor.learn.tapsme.org/tap-build/workloads/mae-demo-mae@sha256:f8dc5e012a5479507eb8953c9c2d5d954b3e7a58860408f39e1755096784eb8d
+        image: registry.harbor.learn.tapsme.org/tap-build/workloads/mae-demo-mae@sha256:0168c0314ad767d2e734a9230d82871c4593269659339a913f0db6e2afcab4ea
         livenessProbe:
           httpGet:
             path: /livez
