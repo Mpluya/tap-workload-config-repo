@@ -38,7 +38,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: registry.harbor.learn.tapsme.org/tap-build/workloads/sso-example-app-tap-jeremy@sha256:0fac758ad04908d9c68d41b5cfc4885612ee072ed611c67cfbdff6ce5def6b39
+        image: registry.harbor.learn.tapsme.org/tap-build/workloads/sso-example-app-tap-jeremy@sha256:e05c325dd5b7def7e974baae91224f23f2ca270250812352e1dd80555165445d
         name: workload
         ports:
         - containerPort: 8080
