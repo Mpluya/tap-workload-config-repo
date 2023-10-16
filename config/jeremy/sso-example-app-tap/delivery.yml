@@ -1,0 +1,49 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: sso-example-app-tap
+  annotations:
+    ootb.apps.tanzu.vmware.com/servicebinding-workload: "true"
+    ootb.apps.tanzu.vmware.com/apidescriptor-ref: "true"
+    kapp.k14s.io/change-rule: upsert after upserting servicebinding.io/ServiceBindings
+  labels:
+    app.kubernetes.io/part-of: sso-example-app-tap
+    apps.tanzu.vmware.com/auto-configure-actuators: "true"
+    apps.tanzu.vmware.com/workload-type: web
+    app.kubernetes.io/component: run
+    carto.run/workload-name: sso-example-app-tap
+spec:
+  template:
+    metadata:
+      annotations:
+        boot.spring.io/version: 2.7.0
+        conventions.carto.run/applied-conventions: |-
+          appliveview-sample/app-live-view-appflavour-check
+          spring-boot-convention/auto-configure-actuators-check
+          spring-boot-convention/spring-boot
+          spring-boot-convention/spring-boot-graceful-shutdown
+          spring-boot-convention/spring-boot-web
+          spring-boot-convention/app-live-view-appflavour-check
+        developer.conventions/target-containers: workload
+      labels:
+        app.kubernetes.io/component: run
+        app.kubernetes.io/part-of: sso-example-app-tap
+        apps.tanzu.vmware.com/auto-configure-actuators: "true"
+        apps.tanzu.vmware.com/workload-type: web
+        carto.run/workload-name: sso-example-app-tap
+        conventions.carto.run/framework: spring-boot
+    spec:
+      containers:
+      - env:
+        - name: JAVA_TOOL_OPTIONS
+          value: -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
+        image: registry.harbor.learn.tapsme.org/tap-build/workloads/sso-example-app-tap-jeremy@sha256:5d5b9c0663886e595aed25defe2210a399f10e0e7d5c787d520787bc6778d6eb
+        name: workload
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+        securityContext:
+          runAsUser: 1000
+      serviceAccountName: default
+
