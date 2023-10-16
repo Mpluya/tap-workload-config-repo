@@ -47,7 +47,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.health.probes.enabled="true" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: registry.harbor.learn.tapsme.org/tap-build/workloads/lintey-app-mae@sha256:6b15a2101b6d505eace239fcd04deae6e8cd21b0e4b50b7b89e9180765be4437
+        image: registry.harbor.learn.tapsme.org/tap-build/workloads/lintey-app-mae@sha256:e705d7d32a9caa0d08a0689f5a025f58a244e9737299af39cd36efad5301fe97
         livenessProbe:
           httpGet:
             path: /livez
@@ -65,5 +65,10 @@ spec:
         resources: {}
         securityContext:
           runAsUser: 1000
+        startupProbe:
+          httpGet:
+            path: /readyz
+            port: 8080
+            scheme: HTTP
       serviceAccountName: default
 
