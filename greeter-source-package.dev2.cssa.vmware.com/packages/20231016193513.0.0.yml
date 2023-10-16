@@ -1,0 +1,70 @@
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  name: greeter-source-package.dev2.cssa.vmware.com.20231016193513.0.0+build.f26f75f
+spec:
+  refName: greeter-source-package.dev2.cssa.vmware.com
+  version: 20231016193513.0.0+build.f26f75f
+  releaseNotes: |
+    Release v20231016193513.0.0+build.f26f75f of package greeter-source-package.dev2.cssa.vmware.com
+  template:
+    spec:
+      fetch:
+      - imgpkgBundle:
+          image: registry.harbor.learn.tapsme.org/tap-build/workloads/greeter-source-package-dev2-bundle@sha256:4f2e5b03755bdd58f796da944cebdff187ce0444bdfab16bb86e8dabbd697910
+      template:
+      - ytt:
+          paths:
+          - .
+      - kbld:
+          paths:
+          - .imgpkg/images.yml
+          - '-'
+      deploy:
+      - kapp: {}
+  valuesSchema:
+    openAPIv3:
+      type: object
+      additionalProperties: false
+      properties:
+        workload_name:
+          title: Workload name
+          type: string
+          default: ""
+        replicas:
+          title: Replicas
+          type: integer
+          default: 1
+        port:
+          title: Port
+          type: integer
+          default: 8080
+        hostname:
+          title: Hostname
+          type: string
+          default: ""
+        cluster_issuer:
+          title: Cluster Issuer
+          type: string
+          default: tap-ingress-selfsigned
+        http_route:
+          type: object
+          additionalProperties: false
+          nullable: true
+          properties:
+            gateways:
+              type: array
+              items:
+                type: object
+                additionalProperties: false
+                properties:
+                  protocol:
+                    type: string
+                    default: ""
+                  name:
+                    type: string
+                    default: ""
+              default:
+              - protocol: https
+                name: default-gateway
+
