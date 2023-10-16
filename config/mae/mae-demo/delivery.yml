@@ -50,7 +50,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details="always" -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include="*" -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: registry.harbor.learn.tapsme.org/tap-build/workloads/mae-demo-mae@sha256:819cc27d21a26fde516150f85ea34714402102bbccd24e16b4a98539fa7cd280
+        image: registry.harbor.learn.tapsme.org/tap-build/workloads/mae-demo-mae@sha256:9e28a303243453cf494d68dee766b3750f5f8b9e035e925e70d1aca902d525c9
         livenessProbe:
           httpGet:
             path: /livez
