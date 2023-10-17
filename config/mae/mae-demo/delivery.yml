@@ -23,6 +23,7 @@ spec:
         boot.spring.io/version: 2.7.12
         conventions.carto.run/applied-conventions: |-
           appliveview-sample/app-live-view-appflavour-check
+          multi-purpose-convention/x95castle1.org-tolerations
           spring-boot-convention/auto-configure-actuators-check
           spring-boot-convention/spring-boot
           spring-boot-convention/spring-boot-graceful-shutdown
@@ -33,7 +34,7 @@ spec:
           spring-boot-convention/app-live-view-connector-boot
           spring-boot-convention/app-live-view-appflavours-boot
         developer.conventions/target-containers: workload
-        example.com/tolerations: '[{"key":"rabeyta","operator":"Exists","effect":"NoSchedule"}]'
+        x95castle1.org/tolerations: '[{"key":"rabeyta","operator":"Exists","effect":"NoSchedule"}]'
       labels:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: mae-demo
@@ -76,4 +77,8 @@ spec:
             port: 8080
             scheme: HTTP
       serviceAccountName: default
+      tolerations:
+      - effect: NoSchedule
+        key: rabeyta
+        operator: Exists
 
