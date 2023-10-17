@@ -17,6 +17,7 @@ spec:
   template:
     metadata:
       annotations:
+        apps.tanzu.vmware.com/correlationid: https://artifactory.shared.learn.tapsme.org/artifactory/maven-local-tap/com/example/demo
         boot.spring.io/version: 2.5.4
         conventions.carto.run/applied-conventions: |-
           appliveview-sample/app-live-view-appflavour-check
