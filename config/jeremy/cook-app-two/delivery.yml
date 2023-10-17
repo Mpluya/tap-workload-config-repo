@@ -15,6 +15,7 @@ spec:
   template:
     metadata:
       annotations:
+        apps.tanzu.vmware.com/correlationid: ssh://git@github.com/x95castle1/cook-app-two?sub_path=/
         autoscaling.knative.dev/minScale: "1"
         boot.spring.io/version: 3.0.1
         conventions.carto.run/applied-conventions: |-
@@ -42,16 +43,6 @@ spec:
         tanzu.app.live.view.application.flavours: spring-boot
         tanzu.app.live.view.application.name: cook-app-two
     spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: topology.kubernetes.io/zone
-                operator: In
-                values:
-                - 0.0.103
-                - 0.0.104
       containers:
       - env:
         - name: SPRING_CONFIG_IMPORT
@@ -86,8 +77,4 @@ spec:
             port: 8080
             scheme: HTTP
       serviceAccountName: default
-      tolerations:
-      - effect: NoSchedule
-        key: test
-        operator: Exists
 
