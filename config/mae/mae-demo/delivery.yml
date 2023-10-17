@@ -33,6 +33,7 @@ spec:
           spring-boot-convention/app-live-view-connector-boot
           spring-boot-convention/app-live-view-appflavours-boot
         developer.conventions/target-containers: workload
+        example.com/tolerations: '[{"key":"rabeyta","operator":"Exists","effect":"NoSchedule"}]'
       labels:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: mae-demo
