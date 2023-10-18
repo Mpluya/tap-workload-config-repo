@@ -20,6 +20,7 @@ spec:
         autoscaling.knative.dev/minScale: "1"
         conventions.carto.run/applied-conventions: |-
           appliveview-sample/app-live-view-appflavour-check
+          multi-purpose-convention/x95castle1.org-readiness
           spring-boot-convention/auto-configure-actuators-check
           spring-boot-convention/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
@@ -36,6 +37,12 @@ spec:
       containers:
       - image: registry.harbor.learn.tapsme.org/tap-build/workloads/convention-workload-probes-jeremy@sha256:9e65bd9f1407d3cabe2a1c509443db295b1697df4ad23c79354762c024c5bde8
         name: workload
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
         resources: {}
         securityContext:
           runAsUser: 1000
