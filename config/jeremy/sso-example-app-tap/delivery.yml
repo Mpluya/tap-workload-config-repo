@@ -39,7 +39,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.health.probes.enabled="false" -Dmanagement.info.env.enabled="true" -Dmanagement.server.port="8080" -Dorg.springframework.cloud.bindings.boot.enable="true" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: registry.harbor.learn.tapsme.org/tap-build/workloads/sso-example-app-tap-jeremy@sha256:745e9970a5a3c5e362762202dfaab4d2967ff50519746b769699d77b92ad400c
+        image: registry.harbor.learn.tapsme.org/tap-build/workloads/sso-example-app-tap-jeremy@sha256:b07d645538198cb2d5938a6c5415dd6e1f608689da28cb68aa1eb8721eb0cc36
         name: workload
         ports:
         - containerPort: 8080
