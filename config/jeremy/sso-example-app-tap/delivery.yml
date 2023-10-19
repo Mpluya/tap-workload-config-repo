@@ -38,7 +38,7 @@ spec:
       containers:
       - env:
         - name: JAVA_TOOL_OPTIONS
-          value: -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
+          value: -Dorg.springframework.cloud.bindings.boot.enable="true" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
         image: registry.harbor.learn.tapsme.org/tap-build/workloads/sso-example-app-tap-jeremy@sha256:8fc3c1d34eac12558fe6a794a2c564756c9660b5792460956f82f1d8e008a674
         name: workload
         ports:
