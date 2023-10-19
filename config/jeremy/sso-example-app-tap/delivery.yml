@@ -18,6 +18,7 @@ spec:
       annotations:
         apps.tanzu.vmware.com/correlationid: https://github.com/x95castle1/sso-example-app-tap.git?sub_path=/
         autoscaling.knative.dev/minScale: "1"
+        boot.spring.io/actuator: http://:8081/actuator
         boot.spring.io/version: 2.7.0
         conventions.carto.run/applied-conventions: |-
           appliveview-sample/app-live-view-appflavour-check
@@ -25,7 +26,11 @@ spec:
           spring-boot-convention/spring-boot
           spring-boot-convention/spring-boot-graceful-shutdown
           spring-boot-convention/spring-boot-web
+          spring-boot-convention/spring-boot-actuator
+          spring-boot-convention/spring-boot-actuator-probes
           spring-boot-convention/app-live-view-appflavour-check
+          spring-boot-convention/app-live-view-connector-boot
+          spring-boot-convention/app-live-view-appflavours-boot
         developer.conventions/target-containers: workload
       labels:
         app.kubernetes.io/component: run
@@ -34,18 +39,38 @@ spec:
         apps.tanzu.vmware.com/workload-type: web
         carto.run/workload-name: sso-example-app-tap
         conventions.carto.run/framework: spring-boot
+        tanzu.app.live.view: "true"
+        tanzu.app.live.view.application.actuator.path: actuator
+        tanzu.app.live.view.application.actuator.port: "8081"
+        tanzu.app.live.view.application.flavours: spring-boot
+        tanzu.app.live.view.application.name: sso-example-app-tap
     spec:
       containers:
       - env:
         - name: JAVA_TOOL_OPTIONS
-          value: -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: registry.harbor.learn.tapsme.org/tap-build/workloads/sso-example-app-tap-jeremy@sha256:8ceb5b91f48ec1e49e440eb9a7b39ef8383e10c69dfc8f658dbf7e380ced5dfe
+          value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details="always" -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include="*" -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
+        image: registry.harbor.learn.tapsme.org/tap-build/workloads/sso-example-app-tap-jeremy@sha256:c62f41683f5d48811295d88a973ff4535a5a17dce5e7fc1c6273899e25702ccc
+        livenessProbe:
+          httpGet:
+            path: /livez
+            port: 8080
+            scheme: HTTP
         name: workload
         ports:
         - containerPort: 8080
           protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8080
+            scheme: HTTP
         resources: {}
         securityContext:
           runAsUser: 1000
+        startupProbe:
+          httpGet:
+            path: /readyz
+            port: 8080
+            scheme: HTTP
       serviceAccountName: default
 
