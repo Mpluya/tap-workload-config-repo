@@ -25,11 +25,7 @@ spec:
           spring-boot-convention/spring-boot
           spring-boot-convention/spring-boot-graceful-shutdown
           spring-boot-convention/spring-boot-web
-          spring-boot-convention/spring-boot-actuator
-          spring-boot-convention/spring-boot-actuator-probes
           spring-boot-convention/app-live-view-appflavour-check
-          spring-boot-convention/app-live-view-connector-boot
-          spring-boot-convention/app-live-view-appflavours-boot
         developer.conventions/target-containers: workload
       labels:
         app.kubernetes.io/component: run
@@ -38,38 +34,18 @@ spec:
         apps.tanzu.vmware.com/workload-type: web
         carto.run/workload-name: sso-example-app-tap
         conventions.carto.run/framework: spring-boot
-        tanzu.app.live.view: "true"
-        tanzu.app.live.view.application.actuator.path: actuator
-        tanzu.app.live.view.application.actuator.port: "8080"
-        tanzu.app.live.view.application.flavours: spring-boot
-        tanzu.app.live.view.application.name: sso-example-app-tap
     spec:
       containers:
       - env:
         - name: JAVA_TOOL_OPTIONS
-          value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.health.probes.enabled="true" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: registry.harbor.learn.tapsme.org/tap-build/workloads/sso-example-app-tap-jeremy@sha256:73f75c6a4b78d2a15a23029745853b65c2acef7a1f29524c4c6d6115e1cc5178
-        livenessProbe:
-          httpGet:
-            path: /livez
-            port: 8080
-            scheme: HTTP
+          value: -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
+        image: registry.harbor.learn.tapsme.org/tap-build/workloads/sso-example-app-tap-jeremy@sha256:b3bc9e7b489cd685f79284f347c173a410aa38b0beffe048fa695e781e1c7e6a
         name: workload
         ports:
         - containerPort: 8080
           protocol: TCP
-        readinessProbe:
-          httpGet:
-            path: /readyz
-            port: 8080
-            scheme: HTTP
         resources: {}
         securityContext:
           runAsUser: 1000
-        startupProbe:
-          httpGet:
-            path: /readyz
-            port: 8080
-            scheme: HTTP
       serviceAccountName: default
 
