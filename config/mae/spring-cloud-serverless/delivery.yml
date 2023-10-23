@@ -64,7 +64,7 @@ spec:
           value: "8080"
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details="always" -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include="*" -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: registry.harbor.learn.tapsme.org/tap-build/workloads/spring-cloud-serverless-mae@sha256:8f6958d9264eca594c19e0acdd4558f68af383f60c79f950e5aa039f5af93158
+        image: registry.harbor.learn.tapsme.org/tap-build/workloads/spring-cloud-serverless-mae@sha256:818bb788479e3bf566759665dfd55b849c5176196c2f3b6f1f1fdb365927938b
         livenessProbe:
           httpGet:
             path: /livez
