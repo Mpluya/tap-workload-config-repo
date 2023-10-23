@@ -18,14 +18,6 @@ spec:
       annotations:
         apps.tanzu.vmware.com/correlationid: https://github.com/x95castle1/sso-example-app-tap.git?sub_path=/
         autoscaling.knative.dev/minScale: "1"
-        boot.spring.io/version: 2.7.0
-        conventions.carto.run/applied-conventions: |-
-          appliveview-sample/app-live-view-appflavour-check
-          spring-boot-convention/auto-configure-actuators-check
-          spring-boot-convention/spring-boot
-          spring-boot-convention/spring-boot-graceful-shutdown
-          spring-boot-convention/spring-boot-web
-          spring-boot-convention/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
       labels:
         app.kubernetes.io/component: run
@@ -33,17 +25,15 @@ spec:
         apps.tanzu.vmware.com/auto-configure-actuators: "true"
         apps.tanzu.vmware.com/workload-type: web
         carto.run/workload-name: sso-example-app-tap
-        conventions.carto.run/framework: spring-boot
     spec:
       containers:
       - env:
         - name: JAVA_TOOL_OPTIONS
-          value: -Dorg.springframework.cloud.bindings.boot.enable="true" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: registry.harbor.learn.tapsme.org/tap-build/workloads/sso-example-app-tap-jeremy@sha256:8fc3c1d34eac12558fe6a794a2c564756c9660b5792460956f82f1d8e008a674
+          value: -Dorg.springframework.cloud.bindings.boot.enable=true
+        - name: SPRING_PROFILES_ACTIVE
+          value: cloud
+        image: registry.harbor.learn.tapsme.org/tap-build/workloads/sso-example-app-tap-jeremy@sha256:9dd08e826b185836fdb86db0bfb843c529b719f7a4cea9b86bcdc25754f953b7
         name: workload
-        ports:
-        - containerPort: 8080
-          protocol: TCP
         resources: {}
         securityContext:
           runAsUser: 1000
