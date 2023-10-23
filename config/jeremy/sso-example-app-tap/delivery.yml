@@ -41,7 +41,7 @@ spec:
           value: -Dorg.springframework.cloud.bindings.boot.enable="true" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
         - name: SPRING_PROFILES_ACTIVE
           value: cloud
-        image: registry.harbor.learn.tapsme.org/tap-build/workloads/sso-example-app-tap-jeremy@sha256:000c219c5b6aa4c71f73d7cc28f99403c52bbded1178f5147daa77a6f7471318
+        image: registry.harbor.learn.tapsme.org/tap-build/workloads/sso-example-app-tap-jeremy@sha256:70a5a123c961b16175441049d18d85569ce3643fcee93752540ad6888254c7a0
         name: workload
         ports:
         - containerPort: 8080
