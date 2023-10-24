@@ -29,7 +29,7 @@ spec:
         carto.run/workload-name: angular-frontend
     spec:
       containers:
-      - image: registry.harbor.learn.tapsme.org/tap-build/workloads/angular-frontend-mae@sha256:039985ceda2088909cfdb823bfc31e71f23810c958329b2f60e2e50b6cd39c15
+      - image: registry.harbor.learn.tapsme.org/tap-build/workloads/angular-frontend-mae@sha256:4846413e9509028fd607ac3e58edb240d05d0a4987ac820a4b73ea7abcab1b8a
         name: workload
         resources: {}
         securityContext:
