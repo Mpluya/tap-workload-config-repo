@@ -10,6 +10,7 @@ metadata:
     apis.apps.tanzu.vmware.com/register-api: "true"
     app.kubernetes.io/part-of: customer-profile-too
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
+    apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/workload-type: web
     no-sonar: "true"
     app.kubernetes.io/component: run
