@@ -13,7 +13,7 @@ metadata:
     app.kubernetes.io/component: run
     carto.run/workload-name: custom-java-web-app
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/component: run
@@ -63,7 +63,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details="always" -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include="*" -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: registry.harbor.learn.tapsme.org/tap-build/workloads/custom-java-web-app-jeremy@sha256:39c5187665890872170d079a15eb4f1f2642404b20254c81382ca85cdbb0f6e5
+        image: registry.harbor.learn.tapsme.org/tap-build/workloads/custom-java-web-app-jeremy@sha256:22628bf4b97febc5ba5fe1b69c0522196e28e991ad20fb6e29049a6b5bacb6e5
         livenessProbe:
           httpGet:
             path: /livez
