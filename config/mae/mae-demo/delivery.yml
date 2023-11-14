@@ -1,19 +1,33 @@
-apiVersion: serving.knative.dev/v1
-kind: Service
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: mae-demo
   annotations:
+    kapp.k14s.io/update-strategy: fallback-on-replace
     ootb.apps.tanzu.vmware.com/servicebinding-workload: "true"
-    ootb.apps.tanzu.vmware.com/apidescriptor-ref: "true"
     kapp.k14s.io/change-rule: upsert after upserting servicebinding.io/ServiceBindings
   labels:
     app.kubernetes.io/part-of: mae-demo
     apps.tanzu.vmware.com/auto-configure-actuators: "false"
     apps.tanzu.vmware.com/has-tests: "true"
-    apps.tanzu.vmware.com/workload-type: web
+    apps.tanzu.vmware.com/workload-type: server
     app.kubernetes.io/component: run
     carto.run/workload-name: mae-demo
 spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: run
+      app.kubernetes.io/part-of: mae-demo
+      apps.tanzu.vmware.com/auto-configure-actuators: "false"
+      apps.tanzu.vmware.com/has-tests: "true"
+      apps.tanzu.vmware.com/workload-type: web
+      carto.run/workload-name: mae-demo
+      conventions.carto.run/framework: spring-boot
+      tanzu.app.live.view: "true"
+      tanzu.app.live.view.application.actuator.path: actuator
+      tanzu.app.live.view.application.actuator.port: "8080"
+      tanzu.app.live.view.application.flavours: spring-boot
+      tanzu.app.live.view.application.name: mae-demo
   template:
     metadata:
       annotations:
@@ -80,4 +94,34 @@ spec:
       - effect: NoSchedule
         key: rabeyta
         operator: Exists
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mae-demo
+  labels:
+    app.kubernetes.io/part-of: mae-demo
+    apps.tanzu.vmware.com/auto-configure-actuators: "false"
+    apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/workload-type: server
+    app.kubernetes.io/component: run
+    carto.run/workload-name: mae-demo
+spec:
+  selector:
+    app.kubernetes.io/component: run
+    app.kubernetes.io/part-of: mae-demo
+    apps.tanzu.vmware.com/auto-configure-actuators: "false"
+    apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/workload-type: web
+    carto.run/workload-name: mae-demo
+    conventions.carto.run/framework: spring-boot
+    tanzu.app.live.view: "true"
+    tanzu.app.live.view.application.actuator.path: actuator
+    tanzu.app.live.view.application.actuator.port: "8080"
+    tanzu.app.live.view.application.flavours: spring-boot
+    tanzu.app.live.view.application.name: mae-demo
+  ports:
+  - targetPort: 8080
+    port: 8080
+    name: http
 
