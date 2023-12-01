@@ -127,7 +127,7 @@ metadata:
     carto.run/workload-name: server-java-web-app
 spec:
   rules:
-    - host: server-java-web-app
+    - host: #@ "server-java-web-app" + data.values.domain
       http:
         paths:
           - pathType: Prefix
