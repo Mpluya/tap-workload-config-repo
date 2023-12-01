@@ -1,3 +1,29 @@
+#@ load("@ytt:data", "data")
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: server-java-web-app
+  annotations:
+    projectcontour.io/tls-cert-namespace: kube-system
+    kubernetes.io/ingress.class: contour
+    kapp.k14s.io/change-rule: "upsert after upserting Services"
+  labels: 
+    app.kubernetes.io/component: "run"
+    carto.run/workload-name: server-java-web-app
+spec:
+  rules:
+    - host: #@ "server-java-web-app" + data.values.domain
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: server-java-web-app
+                port:
+                  number: 8080
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -113,28 +139,3 @@ spec:
   - targetPort: 8080
     port: 8080
     name: http
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: server-java-web-app
-  annotations:
-    projectcontour.io/tls-cert-namespace: kube-system
-    kubernetes.io/ingress.class: contour
-    kapp.k14s.io/change-rule: "upsert after upserting Services"
-  labels: 
-    app.kubernetes.io/component: "run"
-    carto.run/workload-name: server-java-web-app
-spec:
-  rules:
-    - host: #@ "server-java-web-app" + data.values.domain
-      http:
-        paths:
-          - pathType: Prefix
-            path: /
-            backend:
-              service:
-                name: server-java-web-app
-                port:
-                  number: 8080
-
