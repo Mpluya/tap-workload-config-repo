@@ -10,7 +10,6 @@ metadata:
     apis.apps.tanzu.vmware.com/register-api: "true"
     app.kubernetes.io/part-of: customer-profile-too
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
-    apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/workload-type: web
     no-sonar: "true"
     app.kubernetes.io/component: run
@@ -42,7 +41,6 @@ spec:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: customer-profile-too
         apps.tanzu.vmware.com/auto-configure-actuators: "true"
-        apps.tanzu.vmware.com/has-tests: "true"
         apps.tanzu.vmware.com/workload-type: web
         carto.run/workload-name: customer-profile-too
         conventions.carto.run/framework: spring-boot
@@ -58,7 +56,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details="always" -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include="*" -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: registry.harbor.learn.tapsme.org/tap-build/workloads/customer-profile-too-mae@sha256:4f66860dfb319d6b1471b6756b94153e57872f84b8c2a39c629a5abe7dd0f0c7
+        image: cxscssa.azurecr.io/tap-build/workloads/customer-profile-too-mae@sha256:5c1202befd9dd41a73e1a3adf4b8a8ab57b4d5aaa53b006f4d22502397473c8f
         livenessProbe:
           httpGet:
             path: /livez
