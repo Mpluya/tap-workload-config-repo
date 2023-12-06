@@ -18,6 +18,8 @@ kind: ServiceBinding
 metadata:
   name: friday-java-web-app-ca-cert
   annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{},"labels":{"app.kubernetes.io/part-of":"friday-java-web-app","apps.tanzu.vmware.com/auto-configure-actuators":"true","apps.tanzu.vmware.com/workload-type":"web"},"name":"friday-java-web-app","namespace":"jeremy"},"spec":{"build":{"env":[{"name":"BP_JVM_VERSION","value":"11"}]},"params":[{"name":"annotations","value":{"autoscaling.knative.dev/minScale":"1"}}],"serviceClaims":[{"name":"ca-cert","ref":{"apiVersion":"v1","kind":"Secret","name":"tap-ca-cert"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/x95castle1/friday-java-web-app"}}}}
     autoscaling.knative.dev/minScale: "1"
     kapp.k14s.io/change-group: servicebinding.io/ServiceBindings
   labels:
