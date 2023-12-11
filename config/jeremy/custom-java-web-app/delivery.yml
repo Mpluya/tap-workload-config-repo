@@ -3,7 +3,6 @@ kind: Ingress
 metadata:
   name: custom-java-web-app
   annotations:
-    ingress.kubernetes.io/force-ssl-redirect: "true"
     kubernetes.io/ingress.class: contour
     kapp.k14s.io/change-rule: upsert after upserting Services
   labels:
