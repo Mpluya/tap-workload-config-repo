@@ -1,26 +1,3 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: custom-java-web-app
-  annotations:
-    kubernetes.io/ingress.class: contour
-    kapp.k14s.io/change-rule: upsert after upserting Services
-  labels:
-    app.kubernetes.io/component: run
-    carto.run/workload-name: custom-java-web-app
-spec:
-  rules:
-  - host: custom-java-web-app
-    http:
-      paths:
-      - pathType: Prefix
-        path: /
-        backend:
-          service:
-            name: custom-java-web-app
-            port:
-              number: 8080
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -68,8 +45,6 @@ spec:
           spring-boot-convention/app-live-view-connector-boot
           spring-boot-convention/app-live-view-appflavours-boot
         developer.conventions/target-containers: workload
-        kubectl.kubernetes.io/last-applied-configuration: |
-          {"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{},"labels":{"app.kubernetes.io/part-of":"custom-java-web-app","apps.tanzu.vmware.com/auto-configure-actuators":"true","apps.tanzu.vmware.com/workload-type":"custom"},"name":"custom-java-web-app","namespace":"jeremy"},"spec":{"build":{"env":[{"name":"BP_JVM_VERSION","value":"11"}]},"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/x95castle1/friday-java-web-app"}}}}
       labels:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: custom-java-web-app
@@ -87,7 +62,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details="always" -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include="*" -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: cxscssa.azurecr.io/tap-build/workloads/custom-java-web-app-jeremy@sha256:048eab03f7497dc6082818259397330f570d1b4054644df32802080cdba1da34
+        image: cxscssa.azurecr.io/tap-build/workloads/custom-java-web-app-jeremy@sha256:b584cce83f12794474920c5edf3e69a53bf3011b7d5b8f9821154c76a5317802
         livenessProbe:
           httpGet:
             path: /livez
