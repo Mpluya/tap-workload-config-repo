@@ -42,7 +42,7 @@ spec:
       app.kubernetes.io/component: run
       app.kubernetes.io/part-of: wednesday-java-web-app
       apps.tanzu.vmware.com/auto-configure-actuators: "true"
-      apps.tanzu.vmware.com/workload-type: server
+      apps.tanzu.vmware.com/workload-type: custom
       carto.run/workload-name: wednesday-java-web-app
       conventions.carto.run/framework: spring-boot
       tanzu.app.live.view: "true"
@@ -73,7 +73,7 @@ spec:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: wednesday-java-web-app
         apps.tanzu.vmware.com/auto-configure-actuators: "true"
-        apps.tanzu.vmware.com/workload-type: server
+        apps.tanzu.vmware.com/workload-type: custom
         carto.run/workload-name: wednesday-java-web-app
         conventions.carto.run/framework: spring-boot
         tanzu.app.live.view: "true"
@@ -126,7 +126,7 @@ spec:
     app.kubernetes.io/component: run
     app.kubernetes.io/part-of: wednesday-java-web-app
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
-    apps.tanzu.vmware.com/workload-type: server
+    apps.tanzu.vmware.com/workload-type: custom
     carto.run/workload-name: wednesday-java-web-app
     conventions.carto.run/framework: spring-boot
     tanzu.app.live.view: "true"
